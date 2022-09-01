@@ -32,7 +32,7 @@ export default function Home() {
   const getProviderOrSigner = async (needSigner = false) => {
     //Connect to Metamask
     // Since we store `web3Modal` as a reference, we need to access the `current` value to get access to the underlying object
-    const provider = await Web3ModalRef.current.connect();
+    const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
 
     // If user is not connected to the Rinkeby network, let them know and throw an error
@@ -54,9 +54,9 @@ export default function Home() {
    */
   const addAddressToWhitelist = async () => {
     try {
-      // We need a Signer here since this is a 'write' transaction
+      // We need a Signer here since this is a 'write' transaction.
       const signer = await getProviderOrSigner(true);
-      // Create a new instance of the COtnract with a Signer, which allows
+      // Create a new instance of the Contract with a Signer, which allows
       // update methods
       const whitelistContract = new Contract(
         WHITELIST_CONTRACT_ADDRESS,
